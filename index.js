@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 require('dotenv').config();
+const PORT = 5000 || process.env.PORT;
 const serverless = require('serverless-http');
 const HospitalModel = require('./models/HospitalModel');
 const AgentModel = require('./models/AgentModel');
@@ -22,9 +23,9 @@ app.use(cors({ origin: process.env.HOST_ADDRESS, credentials: true }));
 //     res.status(200).send('Server is running');
 // });
 
-// app.listen(process.env.PORT, () => {
-//     console.log('Server is running on port '+process.env.PORT);
-// });
+app.listen(PORT, () => {
+    console.log('Server is running on port '+PORT);
+});
 
 
 app.post('/saveHospitalData', async (req, res) => {

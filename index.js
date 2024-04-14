@@ -17,8 +17,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: process.env.HOST_ADDRESS, credentials: true }));
 
+
 app.get('/', (req, res) => {
     res.status(200).send('Server is running');
+});
+
+app.get('/hai', (req, res) => {
+    res.status(200).send('Server is running in hai');
+});
+
+app.get('/hai', (req, res) => {
+    res.status(200).send('Server is running in hello');
 });
 
 app.listen(process.env.PORT, () => {

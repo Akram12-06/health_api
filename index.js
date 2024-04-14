@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 require('dotenv').config();
-const PORT = 5000 || process.env.PORT;
-const serverless = require('serverless-http');
 const HospitalModel = require('./models/HospitalModel');
 const AgentModel = require('./models/AgentModel');
 const UserModel = require('./models/UserModel');
@@ -19,12 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: process.env.HOST_ADDRESS, credentials: true }));
 
-// app.get('/', (req, res) => {
-//     res.status(200).send('Server is running');
-// });
+app.get('/', (req, res) => {
+    res.status(200).send('Server is running');
+});
 
-app.listen(PORT, () => {
-    console.log('Server is running on port '+PORT);
+app.listen(process.env.PORT, () => {
+    console.log('Server is running on port '+process.env.PORT);
 });
 
 
@@ -615,5 +613,3 @@ app.put('/visited/:healthId', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
-module.exports.handler = serverless(app);
